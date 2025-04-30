@@ -5,7 +5,13 @@ const osc = require('osc');
 
 const app = express();
 const server = http.createServer(app); // pass app here!
-const io = socketIo(server);
+const io = socketIo(server, {
+    cors: {
+        origin: "https://Kabuum.github.io/OSCVRSite", // Your frontend address
+        methods: ["GET", "POST"]
+    }
+});
+
 
 // 1) Set up OSC UDP port to communicate with VRChat
 const udpPort = new osc.UDPPort({
@@ -27,6 +33,7 @@ io.on("connection", (socket) => {
 
     // 3) Listen for color updates
     socket.on("color-change", (data) => {
+        console.log('color change received');
         const { r, g, b } = data;
 
         // 4) Construct OSC messages for each parameter
@@ -38,6 +45,7 @@ io.on("connection", (socket) => {
 
         // 5) Send each message
         oscMessages.forEach(msg => {
+            console.log('sent message: ' + msg);
             udpPort.send(msg);
             console.log(`Sent ${msg.address} = ${msg.args[0].value}`);
         });
@@ -50,5 +58,5 @@ io.on("connection", (socket) => {
 
 // Start the server
 server.listen(3001, () => {
-    console.log("WebSocket + OSC Server running on http://localhost:3001");
+    console.log("WebSocket + OSC Server running on http://localhost:3478");
 });

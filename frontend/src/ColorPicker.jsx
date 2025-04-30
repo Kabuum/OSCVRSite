@@ -8,7 +8,7 @@ export function ColorPicker(){
     const socketRef = useRef(null);
 
     useEffect(() => {
-        socketRef.current = io("http://localhost:3001");
+        socketRef.current = io("http://kabuumnet.tplinkdns.com:3478");
 
         return () => {
             socketRef.current.disconnect();
