@@ -8,7 +8,7 @@ export function ColorPicker(){
     const socketRef = useRef(null);
 
     useEffect(() => {
-        socketRef.current = io("wss://kabuumnet.tplinkdns.com:3478");
+        socketRef.current = io("wss://ba03-87-72-205-225.ngrok-free.app");
 
         return () => {
             socketRef.current.disconnect();

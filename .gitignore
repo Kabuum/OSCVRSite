@@ -141,3 +141,7 @@ dist
 /PEMkeys/certificate.crt
 /PEMkeys/private.key
 /PEMkeys/request.csr
+/backend/PEMkeys/certificate.crt
+/backend/PEMkeys/private.key
+/backend/PEMkeys/request.csr
+/backend/test.js

@@ -17,7 +17,7 @@ const server = https.createServer(cert,app);
 
 const io = socketIo(server, {
     cors: {
-        origin: "https://Kabuum.github.io", //frontend address
+        origin: "https://kabuum.github.io", //frontend address
         methods: ["GET", "POST"]
     }
 });
