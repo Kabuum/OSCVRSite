@@ -138,3 +138,6 @@ dist
 /.idea/.gitignore
 /.idea/OSCVRSite.iml
 /.idea/vcs.xml
+/PEMkeys/certificate.crt
+/PEMkeys/private.key
+/PEMkeys/request.csr

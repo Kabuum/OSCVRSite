@@ -1,13 +1,23 @@
 const express = require('express');
 const http = require('http');
+const https = require('https');
+const fs = require('fs');
 const socketIo = require('socket.io');
 const osc = require('osc');
+const path = require('path');
 
 const app = express();
-const server = http.createServer(app); // pass app here!
+
+const cert = {
+    key: fs.readFileSync(path.join(__dirname, 'PEMkeys', 'private.key')),
+    cert: fs.readFileSync(path.join(__dirname, 'PEMkeys', 'certificate.crt'))
+};
+
+const server = https.createServer(cert,app);
+
 const io = socketIo(server, {
     cors: {
-        origin: "https://Kabuum.github.io/OSCVRSite", // Your frontend address
+        origin: "https://Kabuum.github.io", //frontend address
         methods: ["GET", "POST"]
     }
 });
@@ -57,6 +67,6 @@ io.on("connection", (socket) => {
 });
 
 // Start the server
-server.listen(3001, () => {
+server.listen(3478, () => {
     console.log("WebSocket + OSC Server running on http://localhost:3478");
 });
