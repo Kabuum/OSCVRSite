@@ -1,16 +1,16 @@
 {
   "files": {
     "main.css": "/OSCVRSite/static/css/main.02cc2301.css",
-    "main.js": "/OSCVRSite/static/js/main.05036b9d.js",
+    "main.js": "/OSCVRSite/static/js/main.28b3320e.js",
     "static/js/453.8ab44547.chunk.js": "/OSCVRSite/static/js/453.8ab44547.chunk.js",
     "static/media/logo.svg": "/OSCVRSite/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
     "index.html": "/OSCVRSite/index.html",
     "main.02cc2301.css.map": "/OSCVRSite/static/css/main.02cc2301.css.map",
-    "main.05036b9d.js.map": "/OSCVRSite/static/js/main.05036b9d.js.map",
+    "main.28b3320e.js.map": "/OSCVRSite/static/js/main.28b3320e.js.map",
     "453.8ab44547.chunk.js.map": "/OSCVRSite/static/js/453.8ab44547.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.02cc2301.css",
-    "static/js/main.05036b9d.js"
+    "static/js/main.28b3320e.js"
   ]
 }
