@@ -8,7 +8,7 @@ export function ColorPicker(){
     const socketRef = useRef(null);
 
     useEffect(() => {
-        socketRef.current = io("wss://e4b6-87-72-205-225.ngrok-free.app");
+        socketRef.current = io("wss://");
         console.log("attempted websocket connection");
 
         return () => {
