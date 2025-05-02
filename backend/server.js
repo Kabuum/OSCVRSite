@@ -7,6 +7,11 @@ const app = express();
 
 const server = http.createServer(app);
 
+app.get("/", (req, res) => {
+    res.send("Backend is working");
+});
+
+
 const io = socketIo(server, {
     cors: {
         origin: "https://kabuum.github.io", //frontend address
@@ -22,7 +27,7 @@ io.on("connection", (socket) => {
     socket.on("color-change", (data) => {
         console.log('color change received');
         const { r, g, b } = data;
-
+        io.emit("color-change", data);
     });
 
     socket.on("disconnect", () => {
