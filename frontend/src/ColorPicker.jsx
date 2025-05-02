@@ -8,7 +8,7 @@ export function ColorPicker(){
     const socketRef = useRef(null);
 
     useEffect(() => {
-        socketRef.current = io("wss://");
+        socketRef.current = io("wss://oscvrsite.onrender.com");
         console.log("attempted websocket connection");
 
         return () => {
