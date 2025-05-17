@@ -1,26 +1,24 @@
 import React, {useEffect, useRef, useState} from "react";
 import { RgbColorPicker } from "react-colorful";
-import { io } from "socket.io-client"
+import socket, { connect, disconnect } from "./socket";
 import './ColorPicker.css';
 
-export function ColorPicker(){
-    const [color, setColor] = useState({r: 255, g: 255, b: 255});
+export function ColorPicker({label="Color", onChange, enableHairSocket = false, enablePaintingSocket = false, className}){
+    const [color, setColor] = useState({r: 1, g: 1, b: 1});
     const socketRef = useRef(null);
 
     useEffect(() => {
-        socketRef.current = io("wss://oscvrsite.onrender.com");
-        console.log("attempted websocket connection");
-
+        if(!enableHairSocket){return}
+        connect();
         return () => {
-            socketRef.current.disconnect();
+            disconnect();
         };
-    }, []);
+    }, [enableHairSocket]);
 
     useEffect(() => {
-        if (socketRef.current){
-            socketRef.current.emit('color-change', color);
-        }
-    }, [color]);
+        if(!enableHairSocket){return}
+        socket.emit('color-change', color);
+    }, [color, enableHairSocket]);
 
     function handleChange(newColor){
         // Ensure values are within the 0 to 255 range
@@ -38,17 +36,27 @@ export function ColorPicker(){
         };
 
         setColor(normalizedColor);
+
+        if(onChange) {
+            onChange(normalizedColor);
+        }
     }
 
 
     const displayColor = `rgb(${Math.round(color.r * 255)}, ${Math.round(color.g * 255)}, ${Math.round(color.b * 255)})`;
 
     return(
-        <div className={'color-picker-container'}>
+        <div className={`color-picker-container ${className}`}>
             <div className={'color-display'} style={{backgroundColor: displayColor}}>
-                <p>Hair Color:</p>
+                <p>{label}</p>
             </div>
-            <RgbColorPicker onChange={handleChange}/>
+            <RgbColorPicker
+                color = {{
+                    r: Math.round(color.r * 255),
+                    g: Math.round(color.g * 255),
+                    b: Math.round(color.b * 255)
+                }}
+                onChange={handleChange}/>
         </div>
     )
 }

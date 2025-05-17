@@ -30,6 +30,12 @@ io.on("connection", (socket) => {
         io.emit("color-change", data);
     });
 
+    socket.on("PixelDraw", (data) =>{
+        console.log("Pixel Draw received");
+        const {r,g,b,x,y} = data;
+        io.emit("PixelDraw", data);
+    });
+
     socket.on("disconnect", () => {
         console.log("Frontend disconnected.");
     });
