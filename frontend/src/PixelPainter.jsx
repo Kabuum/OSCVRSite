@@ -60,12 +60,14 @@ function PixelPainter({rgb}) {
             : 'black';
         ctx.fillRect(x,y,1,1);
 
+        const flippedY = canvas.height - y - 1;
+
         socket.emit('PixelDraw', {
             r: rgb.r,
             g: rgb.g,
             b: rgb.b,
             x: x / canvasSizeX,
-            y: y / canvasSizeY,
+            y: flippedY / canvasSizeY,
         });
     }
 
