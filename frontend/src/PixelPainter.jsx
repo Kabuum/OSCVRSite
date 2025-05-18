@@ -29,7 +29,7 @@ function PixelPainter({rgb}) {
 
         const context = canvas.getContext('2d')
         contextRef.current = context;
-        context.fillStyle = 'white';
+        context.fillStyle = 'black';
         context.fillRect(0, 0, canvasSizeX, canvasSizeY);
     }, []);
 
